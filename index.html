@@ -320,21 +320,7 @@ onAuthStateChanged(auth, async (user) => {
     points.innerText = 0;
   }
 
-  /* TỰ CỘNG ĐIỂM KHI QUAY LẠI */
-  const task = localStorage.getItem("pending_task");
-  const time = localStorage.getItem("task_time");
-
-  if (task && time && Date.now() - time > 20000) {
-    await updateDoc(ref, {
-      points: increment(1),
-      [`completed.${task}`]: true
-    });
-
-    localStorage.removeItem("pending_task");
-    localStorage.removeItem("task_time");
-
-    alert("✅ Nhiệm vụ hoàn thành! Điểm đã cộng");
-  }
+  
 });
 // login
 window.login = async function () {
@@ -357,7 +343,7 @@ window.logout = function () {
 /* CLICK LINK */
 window.handleClick = function (taskId) {
   if (!currentUser) {
-    alert("Đăng nhập để được cộng điểm");
+    alert("Đăng nhập để khám phá nhiều h");
     return;
   }
 
