@@ -112,6 +112,34 @@ h2 {
   <a href="#course">KHÓA HỌC</a>
 </header>
 
+<!-- LOGIN BOX -->
+<div id="loginBox">
+  <h3>Đăng nhập để nhận điểm</h3>
+  <input id="email" placeholder="Email"><br><br>
+  <input id="password" type="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<hr>
+
+<!-- USER INFO -->
+<div id="userBox" style="display:none">
+  Xin chào: <b id="userEmail"></b><br>
+  Điểm của bạn: <b id="points">0</b><br>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<hr>
+
+<!-- LINK NHIỆM VỤ -->
+<a 
+  href="https://offer-link.com"
+  target="_blank"
+  onclick="handleClick('task_001')"
+>
+  👉 Làm nhiệm vụ nhận điểm
+</a>
+
 <!-- ===== MOD FF ===== -->
 <section id="modff">
 <h2>🔥 MOD FF</h2>
@@ -228,6 +256,122 @@ h2 {
   </div>
 </div>
 </section>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment 
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+/* 🔴 DÁN CONFIG FIREBASE */
+const firebaseConfig = {
+    apiKey: "AIzaSyDEyS29letTmGJACGU2u8SnxvR8EqDTzig",
+    authDomain: "share-link-9008c.firebaseapp.com",
+    projectId: "share-link-9008c",
+    storageBucket: "share-link-9008c.firebasestorage.app",
+    messagingSenderId: "151229659684",
+    appId: "1:151229659684:web:954b4f96ad735d337cb6b1",
+    measurementId: "G-MN0B85NR01"
+  };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* STATE */
+let currentUser = null;
+
+/* DOM ELEMENTS (BẮT BUỘC) */
+const loginBox = document.getElementById("loginBox");
+const userBox = document.getElementById("userBox");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const userEmail = document.getElementById("userEmail");
+const points = document.getElementById("points");
+
+
+/* THEO DÕI LOGIN */
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+
+  if (!user) {
+    loginBox.style.display = "block";
+    userBox.style.display = "none";
+    return;
+  }
+
+  loginBox.style.display = "none";
+  userBox.style.display = "block";
+  userEmail.innerText = user.email;
+
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    points.innerText = snap.data().points || 0;
+  } else {
+    await setDoc(ref, {
+      email: user.email,
+      points: 0
+    });
+    points.innerText = 0;
+  }
+
+  /* TỰ CỘNG ĐIỂM KHI QUAY LẠI */
+  const task = localStorage.getItem("pending_task");
+  const time = localStorage.getItem("task_time");
+
+  if (task && time && Date.now() - time > 20000) {
+    await updateDoc(ref, {
+      points: increment(1),
+      [`completed.${task}`]: true
+    });
+
+    localStorage.removeItem("pending_task");
+    localStorage.removeItem("task_time");
+
+    alert("✅ Nhiệm vụ hoàn thành! Điểm đã cộng");
+  }
+});
+// login
+window.login = async function () {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      emailInput.value,
+      passwordInput.value
+    );
+  } catch (err) {
+    alert("Login lỗi: " + err.message);
+  }
+};
+
+/* LOGOUT */
+window.logout = function () {
+  signOut(auth);
+};
+
+/* CLICK LINK */
+window.handleClick = function (taskId) {
+  if (!currentUser) {
+    alert("Đăng nhập để được cộng điểm");
+    return;
+  }
+
+  localStorage.setItem("pending_task", taskId);
+  localStorage.setItem("task_time", Date.now());
+};
+</script>
 
 </body>
 </html>
