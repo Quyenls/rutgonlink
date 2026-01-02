@@ -198,7 +198,6 @@ h2 {
 
 
 
-
 <!-- LOGIN BOX -->
 <div id="loginBox">
   <h3>Đăng nhập để nhận khám phá nhiều hơn</h3>
@@ -218,6 +217,16 @@ h2 {
 
 <hr>
 
+<p>Điểm b2 của bạn: <b><span id="point">0</span>/3</b></p>
+
+<script>
+function updatePointUI() {
+    const p = localStorage.getItem('point') || 0;
+    document.getElementById('point').innerText = p;
+}
+
+updatePointUI();
+</script>
 
 <!-- SEARCH BOX -->
 <div style="padding:15px;background:#fff;border-bottom:1px solid #ddd;">
@@ -247,6 +256,14 @@ h2 {
     <div class="card-content">
       <div class="card-title">Tut ChatGPT Plus & Business FREE</div>
       <a class="btn" href="https://vsmlink.top/k2dt0" target="_blank">Mở link</a>
+      <button class="btn-vuot"
+        data-shortlink="https://vsmlink.top/k2dt0">
+    Vượt link
+</button>
+
+
+
+
     </div>
   </div>
   <div class="card">
@@ -497,6 +514,41 @@ searchInput.addEventListener("input", function () {
         <span>Yêu cầu gọi lại</span>
     </button> -->
 </div>
+
+<script>
+if (!localStorage.getItem('point')) {
+    localStorage.setItem('point', '0');
+}
+
+document.querySelectorAll('.btn-vuot').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+        let point = Number(localStorage.getItem('point'));
+        const step = point + 1;
+
+        if (step > 3) {
+            alert("Bạn đã đủ 3 point!");
+            return;
+        }
+
+        // sinh token 1 lần
+        const token = 't_' + Math.random().toString(36).slice(2);
+        localStorage.setItem('token_step_' + step, token);
+
+        // lấy link rút gọn của card đó
+        const baseLink = btn.dataset.shortlink;
+
+        // redirect về xacminh.html
+        const finalLink =
+            baseLink +
+            "?redirect=https://quyenls.github.io/rutgonlink/xacminh.html" +
+            "&step=" + step +
+            "&token=" + token;
+
+        window.location.href = finalLink;
+    });
+});
+</script>
 
 
 </body>

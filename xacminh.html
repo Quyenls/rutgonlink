@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="status">Đang xác minh...</h2>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const step = params.get('step');
+const token = params.get('token');
+
+const savedToken = localStorage.getItem('token_step_' + step);
+let point = Number(localStorage.getItem('point') || 0);
+
+if (token && savedToken && token === savedToken && point + 1 == step) {
+    point++;
+    localStorage.setItem('point', point);
+    localStorage.removeItem('token_step_' + step);
+    document.getElementById('status').innerText =
+        `✔ Hoàn thành bước ${step} | Tổng point: ${point}`;
+} else {
+    document.getElementById('status').innerText =
+        "❌ Xác minh thất bại hoặc đã dùng!";
+}
+</script>
+
+
+</body>
+</html>
