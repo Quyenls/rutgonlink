@@ -100,6 +100,43 @@ h2 {
 @media (max-width: 480px) {
   .grid-5 { grid-template-columns: 1fr; }
 }
+.contact-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    border: none;
+}
+
+.contact-btn span {
+    white-space: nowrap;
+}
+
+.phone { background: #e74c3c; }
+.zalo { background: #0068ff; }
+.fb { background: #1877f2; }
+.callback { background: #8e44ad; }
+
+.contact-btn:hover {
+    transform: translateX(-5px);
+    transition: 0.3s;
+}
 
 /* ===== FOOTER ===== */
 .footer {
@@ -248,7 +285,7 @@ h2 {
     </div>
   </div>
   <div class="card">
-    <img src="https://via.placeholder.com/400x250">
+    <img src="https://drive.google.com/thumbnail?id=1U8XGt7_w70015k1Y1uaE1DeVYvPNQg-_&sz=w800">
     <div class="card-content">
       <div class="card-title">SURFSHARK VPN 7 ngày</div>
       <a class="btn" href="https://vsmlink.top/t959f" target="_blank">Mở link</a>
@@ -438,38 +475,29 @@ searchInput.addEventListener("input", function () {
   });
 });
 </script>
+<!-- contact -->
+<div class="contact-float">
+    <!-- <a href="tel:0934072575" class="contact-btn phone">
+        📞
+        <span>Gọi điện</span>
+    </a> -->
 
-<!-- ===== FOOTER CONTACT ===== -->
-<footer class="footer">
-  <div class="footer-container">
-    
-    <div class="footer-item">
-      <h4>📘 Facebook</h4>
-      <a href="https://facebook.com/yourprofile" target="_blank">
-        fb.com/yourprofile
-      </a>
-    </div>
+    <a href="https://web.telegram.org/k/#@MinBroBii35" target="_blank" class="contact-btn zalo">
+        💬
+        <span>Telegram</span>
+    </a>
 
-    <div class="footer-item">
-      <h4>📩 Telegram</h4>
-      <a href="https://t.me/yourusername" target="_blank">
-        @yourusername
-      </a>
-    </div>
+    <a href="https://www.facebook.com/minbrobii0501/" target="_blank" class="contact-btn fb">
+        📘
+        <span>Facebook</span>
+    </a>
 
-    <div class="footer-item">
-      <h4>✉️ Email</h4>
-      <a href="mailto:yourmail@gmail.com">
-        yourmail@gmail.com
-      </a>
-    </div>
+    <!-- <button class="contact-btn callback" onclick="openCallback()">
+        ☎
+        <span>Yêu cầu gọi lại</span>
+    </button> -->
+</div>
 
-  </div>
-
-  <div class="footer-bottom">
-    © 2025 | Share TUT & Khóa Học
-  </div>
-</footer>
 
 </body>
 </html>
