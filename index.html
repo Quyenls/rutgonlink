@@ -2,10 +2,12 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Share TUT trick khoá học</title>
+<title>Share TUT & Khóa Học</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="domain-key" content="campaign_BdgBb0BuPI"/> 
 
+<!-- =======================
+     STYLE
+======================= -->
 <style>
 /* ===== GLOBAL ===== */
 body {
@@ -14,6 +16,7 @@ body {
   background: #f4f6f8;
 }
 
+/* ===== HEADER ===== */
 header {
   position: sticky;
   top: 0;
@@ -24,42 +27,122 @@ header {
 
 header a {
   color: #fff;
-  margin-right: 25px;
+  margin-right: 20px;
   text-decoration: none;
   font-weight: bold;
 }
 
-header a:hover {
-  color: #00ffcc;
-}
+header a:hover { color: #00ffcc; }
 
-section {
-  padding: 30px;
-}
+/* ===== SECTION ===== */
+section { padding: 30px; }
 
 h2 {
   border-left: 5px solid #00b894;
   padding-left: 10px;
-  margin-bottom: 20px;
 }
 
-/* ===== BUTTON ===== */
-.btn {
-  display: inline-block;
-  background: #0984e3;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 13px;
-  text-decoration: none;
+/* ===== SEARCH ===== */
+
+
+/* ===== SEARCH (PRO STYLE) ===== */
+.search-box {
+  display: flex;
+  justify-content: center;     /* căn giữa ngang */
+  padding: 30px 15px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
 }
 
-/* ===== MOD FF ===== */
-.mod-list {
+.search-box input {
+  width: 100%;
+  max-width: 600px;            /* chiều rộng pro */
+  padding: 14px 18px;
+  font-size: 15px;
+  border-radius: 50px;         /* bo tròn đẹp */
+  border: none;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+/* ===== SEARCH WRAP (NỀN TRUNG GIAN) ===== */
+.search-wrap {
+  background: #f8fafc;                /* nền xám sáng */
+  padding: 24px 16px 32px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== INPUT ===== */
+.search-box input {
+  width: 100%;
+  max-width: 720px;
+  padding: 14px 18px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+/* hover */
+.search-box input:hover {
+  border-color: #c7d2fe;
+}
+
+/* focus */
+.search-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* placeholder */
+.search-box input::placeholder {
+  color: #9ca3af;
+}
+
+/* hover + focus */
+.search-box input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+}
+
+/* placeholder */
+.search-box input::placeholder {
+  color: #999;
+}
+
+.search-box {
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* ===== GRID / CARD ===== */
+.grid-5 {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
+
+@media (max-width:1200px){ .grid-5{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:768px){ .grid-5{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:480px){ .grid-5{grid-template-columns:1fr;} }
 
 .card {
   background: #fff;
@@ -74,9 +157,7 @@ h2 {
   object-fit: cover;
 }
 
-.card-content {
-  padding: 12px;
-}
+.card-content { padding: 12px; }
 
 .card-title {
   font-size: 14px;
@@ -84,472 +165,326 @@ h2 {
   margin-bottom: 8px;
 }
 
-/* ===== GRID 5 ITEMS / ROW ===== */
-.grid-5 {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-
-@media (max-width: 1200px) {
-  .grid-5 { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 768px) {
-  .grid-5 { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .grid-5 { grid-template-columns: 1fr; }
-}
-.contact-float {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.contact-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 15px;
-    border-radius: 50px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    border: none;
-}
-
-.contact-btn span {
-    white-space: nowrap;
-}
-
-.phone { background: #e74c3c; }
-.zalo { background: #0068ff; }
-.fb { background: #1877f2; }
-.callback { background: #8e44ad; }
-
-.contact-btn:hover {
-    transform: translateX(-5px);
-    transition: 0.3s;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: #111;
+/* ===== BUTTON ===== */
+.btn {
+  background: #0984e3;
   color: #fff;
-  padding: 30px 20px 15px;
-  margin-top: 40px;
-}
-
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-}
-
-.footer-item h4 {
-  margin-bottom: 8px;
-  color: #00ffcc;
-}
-
-.footer-item a {
-  color: #ddd;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
   text-decoration: none;
-  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
 }
 
-.footer-item a:hover {
-  color: #00ffcc;
+/* ===== AUTH ===== */
+#loginBox,#userBox{
+  padding:15px;
+  background:#fff;
+  margin:15px;
+  border-radius:6px;
 }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: #888;
+/* ===== CONTACT ===== */
+.contact-float{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.contact-btn{
+  padding:12px 15px;
+  border-radius:50px;
+  color:#fff;
+  text-decoration:none;
+}
+.tele{background:#c30f0f;}
+.fb{background:#072ac4;}
+
+/* ===== NAV CTA ===== */
+.nav-cta {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff !important;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: bold;
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
+  transition: all 0.25s ease;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
+/* hover */
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.65);
+  color: #fff;
 }
+
 
 </style>
 </head>
- 
+
 <body>
 
-<!-- ===== MENU ===== -->
+<!-- =======================
+     MENU
+======================= -->
 <header>
   <a href="#tut">TUT</a>
   <a href="#course">KHÓA HỌC</a>
   <a href="#modff">MOD FF</a>
+<!-- CTA -->
+  <a href="#makemoney" class="nav-cta">💰 KIẾM TIỀN ONLINE</a>
 </header>
 
-
-
-<!-- LOGIN BOX -->
+<!-- =======================
+     AUTH
+======================= -->
 <div id="loginBox">
-  <h3>Đăng nhập để nhận khám phá nhiều hơn</h3>
+  <h3>Đăng nhập để nhận quà tri ân</h3>
   <input id="email" placeholder="Email"><br><br>
   <input id="password" type="password" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
+  <button class="btn" onclick="login()">Login</button>
 </div>
 
-<hr>
-
-<!-- USER INFO -->
 <div id="userBox" style="display:none">
   Xin chào: <b id="userEmail"></b><br>
   Điểm của bạn: <b id="points">0</b><br>
-  <button onclick="logout()">Logout</button>
+  <button class="btn" onclick="logout()">Logout</button>
 </div>
 
-<hr>
-
-<p>Điểm b2 của bạn: <b><span id="point">0</span>/3</b></p>
-
-<script>
-function updatePointUI() {
-    const p = localStorage.getItem('point') || 0;
-    document.getElementById('point').innerText = p;
-}
-
-updatePointUI();
-</script>
-
-<!-- SEARCH BOX -->
-<div style="padding:15px;background:#fff;border-bottom:1px solid #ddd;">
-  <input 
-    type="text" 
-    id="searchInput" 
-    placeholder="🔍 Tìm kiếm TUT / Khóa học / MOD Freefire"
-    style="
-      width:100%;
-      max-width:500px;
-      padding:10px;
-      font-size:14px;
-      border-radius:6px;
-      border:1px solid #ccc;
-    "
-  >
+<!-- =======================
+     SEARCH
+======================= -->
+<div class="search-box">
+  <input id="searchInput" placeholder="🔍 Tìm kiếm TUT / Khóa học">
 </div>
 
-
-<!-- ===== TUT ===== -->
+<!-- =======================
+     TUT
+======================= -->
 <section id="tut">
 <h2>📘 TUT</h2>
-
 <div class="grid-5">
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=14JLzJstaZvKuXEOWWqCzkD_uy_AdhJ7C&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Tut ChatGPT Plus & Business FREE</div>
-      <a class="btn" href="https://vsmlink.top/k2dt0" target="_blank">Mở link</a>
-      <button class="btn-vuot"
-        data-shortlink="https://vsmlink.top/k2dt0">
-    Vượt link
-</button>
 
+<!-- CARD TEMPLATE -->
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=14JLzJstaZvKuXEOWWqCzkD_uy_AdhJ7C&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Tut ChatGPT Plus & Business FREE</div>
+    <a class="btn" href="https://vsmlink.top/k2dt0" target="_blank">Mở link</a>
+    <button class="btn btn-vuot" data-shortlink="https://vsmlink.top/k2dt0">Vượt link</button>
+  </div>
+</div>
 
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1zbIyIcbB0wgEMNEChm4Pj4o-oyfjZ06Q&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Lovable AI Pro miễn phí 1 tháng</div>
+    <a class="btn" href="https://vsmlink.top/0dc6n" target="_blank">Mở link</a>
+  </div>
+</div>
 
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1LsfuZUvO1gJsco9uo9quueUBG6OZw3ql&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Website tải video Facebook</div>
+    <a class="btn" href="https://vsmlink.top/nzsld" target="_blank">Mở link</a>
+  </div>
+</div>
 
-    </div>
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1mtlQZ2TUEKuyJjzYLdJxuqWJwbPIUF4E&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Công cụ giải CAPTCHA AI</div>
+    <a class="btn" href="https://vsmlink.top/mxt0h" target="_blank">Mở link</a>
   </div>
-  <div class="card">
-    <img width=50% height="50%" src="https://drive.google.com/thumbnail?id=1zbIyIcbB0wgEMNEChm4Pj4o-oyfjZ06Q&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Cách nhận Lovable AI Pro miễn phí 1 tháng</div>
-      <a class="btn" href="https://vsmlink.top/0dc6n" target="_blank">Mở link</a>
-    </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=12_jo5pOjPV637GtlgImtOs8plbC9lOzd&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Perplexity Pro Education 1 năm</div>
+    <a class="btn" href="https://vsmlink.top/jm66w" target="_blank">Mở link</a>
   </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1LsfuZUvO1gJsco9uo9quueUBG6OZw3ql&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Website tải video Facebook miễn phí</div>
-      <a class="btn" href="https://vsmlink.top/nzsld" target="_blank">Mở link</a>
-    </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1DweXPPxFOf7XgX1lEaE6Me3NH7h9IWWW&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Any Viewer Pro (Code 1 năm)</div>
+    <a class="btn" href="https://vsmlink.top/lqjix" target="_blank">Mở link</a>
   </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1mtlQZ2TUEKuyJjzYLdJxuqWJwbPIUF4E&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Công cụ giải CAPTCHA bằng AI</div>
-      <a class="btn" href="https://vsmlink.top/mxt0h" target="_blank">Mở link</a>
-    </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1U8XGt7_w70015k1Y1uaE1DeVYvPNQg-_&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Surfshark VPN 7 ngày</div>
+    <a class="btn" href="https://vsmlink.top/t959f" target="_blank">Mở link</a>
   </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=12_jo5pOjPV637GtlgImtOs8plbC9lOzd&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Hướng dẫn nhận Perplexity Education Pro 1 năm miễn phí</div>
-      <a class="btn" href="https://vsmlink.top/jm66w	" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1DweXPPxFOf7XgX1lEaE6Me3NH7h9IWWW&sz=w800">
-    <div class="card-content">
-      <div class="card-title">[ Share ] Any Viewer Pro (Code 1 năm)</div>
-      <a class="btn" href="https://vsmlink.top/lqjix" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1U8XGt7_w70015k1Y1uaE1DeVYvPNQg-_&sz=w800">
-    <div class="card-content">
-      <div class="card-title">SURFSHARK VPN 7 ngày</div>
-      <a class="btn" href="https://vsmlink.top/t959f" target="_blank">Mở link</a>
-    </div>
-  </div>
+</div>
+
 </div>
 </section>
 
-<!-- ===== KHÓA HỌC ===== -->
+<!-- =======================
+     KHÓA HỌC
+======================= -->
 <section id="course">
 <h2>🎓 KHÓA HỌC</h2>
-
 <div class="grid-5">
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1kapL1qeCVQUg99wAmviEiUyyaEDZuJy1&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Khóa học TikTok Shop Duy Muối</div>
-      <a class="btn" href="https://vsmlink.top/v9bho" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://via.placeholder.com/400x250">
-    <div class="card-content">
-      <div class="card-title">Khóa học Reup TikTok kiếm tiền</div>
-      <a class="btn" href="https://vsmlink.top/u7wuu" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1x4MQphKgbPUZsLW3Mek6CDZBRYCLNvfW&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Khóa học CapCut Quạ HD (FREE)</div>
-      <a class="btn" href="https://vsmlink.top/fkp6s" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1n3jNyZrmAEcI5yXqDj2N9zE_iKkfm6u3&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Shopee Affiliate kiếm tiền online</div>
-      <a class="btn" href="https://vsmlink.top/ruvsc" target="_blank">Mở link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=1ve7r6KCUU4bhtQFDKIB3kap4Sjz4upQc&sz=w800">
-    <div class="card-content">
-      <div class="card-title">Khóa học Excel FREE</div>
-      <a class="btn" href="https://vsmlink.top/wcs5d" target="_blank">Mở link</a>
-    </div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1kapL1qeCVQUg99wAmviEiUyyaEDZuJy1&sz=w800">
+  <div class="card-content">
+    <div class="card-title">TikTok Shop Duy Muối</div>
+    <a class="btn" href="https://vsmlink.top/v9bho" target="_blank">Mở link</a>
   </div>
 </div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/400x250">
+  <div class="card-content">
+    <div class="card-title">Reup TikTok kiếm tiền</div>
+    <a class="btn" href="https://vsmlink.top/u7wuu" target="_blank">Mở link</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1x4MQphKgbPUZsLW3Mek6CDZBRYCLNvfW&sz=w800">
+  <div class="card-content">
+    <div class="card-title">CapCut Quạ HD (FREE)</div>
+    <a class="btn" href="https://vsmlink.top/fkp6s" target="_blank">Mở link</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1n3jNyZrmAEcI5yXqDj2N9zE_iKkfm6u3&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Shopee Affiliate</div>
+    <a class="btn" href="https://vsmlink.top/ruvsc" target="_blank">Mở link</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=1ve7r6KCUU4bhtQFDKIB3kap4Sjz4upQc&sz=w800">
+  <div class="card-content">
+    <div class="card-title">Excel FREE</div>
+    <a class="btn" href="https://vsmlink.top/wcs5d" target="_blank">Mở link</a>
+  </div>
+</div>
+
+</div>
 </section>
-<!-- ===== MOD FF ===== -->
+
+<!-- =======================
+     MOD FF
+======================= -->
 <section id="modff">
 <h2>🔥 MOD FF</h2>
-
-<div class="mod-list">
-  <div class="card">
-    <img src="https://drive.google.com/thumbnail?id=14mG0dHzmCugIGquLR9ueK23TuIiCM4Jc&sz=w800">
-    <div class="card-content">
-      <div class="card-title">
-        MOD APK INJECT AIM ĐẦU HEATSHOT 100% ANTIBAN NO ROOT
-      </div>
-      <a class="btn" href="https://vsmlink.top/izalt" target="_blank">Mở link</a>
-    </div>
+<div class="grid-5">
+<div class="card">
+  <img src="https://drive.google.com/thumbnail?id=14mG0dHzmCugIGquLR9ueK23TuIiCM4Jc&sz=w800">
+  <div class="card-content">
+    <div class="card-title">MOD AIM HEADSHOT ANTIBAN</div>
+    <a class="btn" href="https://vsmlink.top/izalt" target="_blank">Mở link</a>
   </div>
+</div>
 </div>
 </section>
 
+<!-- =======================
+     CONTACT
+======================= -->
+<div class="contact-float">
+  <a class="contact-btn tele" href="https://t.me/MinBroBii35" target="_blank">Telegram</a>
+  <a class="contact-btn fb" href="https://facebook.com/minbrobii0501" target="_blank">Facebook</a>
+</div>
+
+<!-- =======================
+     FIREBASE + LOGIC
+======================= -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { 
-  getFirestore, 
-  doc, 
-  getDoc,
-  setDoc,
-  updateDoc,
-  increment 
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-/* 🔴 DÁN CONFIG FIREBASE */
 const firebaseConfig = {
-    apiKey: "AIzaSyDEyS29letTmGJACGU2u8SnxvR8EqDTzig",
-    authDomain: "share-link-9008c.firebaseapp.com",
-    projectId: "share-link-9008c",
-    storageBucket: "share-link-9008c.firebasestorage.app",
-    messagingSenderId: "151229659684",
-    appId: "1:151229659684:web:954b4f96ad735d337cb6b1",
-    measurementId: "G-MN0B85NR01"
-  };
+  apiKey: "API_KEY",
+  authDomain: "PROJECT.firebaseapp.com",
+  projectId: "PROJECT"
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* STATE */
-let currentUser = null;
-
-/* DOM ELEMENTS (BẮT BUỘC) */
 const loginBox = document.getElementById("loginBox");
-const userBox = document.getElementById("userBox");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+const userBox  = document.getElementById("userBox");
 const userEmail = document.getElementById("userEmail");
 const points = document.getElementById("points");
 
-
-/* THEO DÕI LOGIN */
 onAuthStateChanged(auth, async (user) => {
-  currentUser = user;
+  loginBox.style.display = user ? "none" : "block";
+  userBox.style.display  = user ? "block" : "none";
+  if (!user) return;
 
-  if (!user) {
-    loginBox.style.display = "block";
-    userBox.style.display = "none";
-    return;
-  }
-
-  loginBox.style.display = "none";
-  userBox.style.display = "block";
   userEmail.innerText = user.email;
-
   const ref = doc(db, "users", user.uid);
   const snap = await getDoc(ref);
 
-  if (snap.exists()) {
-    points.innerText = snap.data().points || 0;
-  } else {
-    await setDoc(ref, {
-      email: user.email,
-      points: 0
-    });
+  if (!snap.exists()) {
+    await setDoc(ref, { email: user.email, points: 0 });
     points.innerText = 0;
+  } else {
+    points.innerText = snap.data().points || 0;
   }
-
-  
 });
-// login
-window.login = async function () {
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      emailInput.value,
-      passwordInput.value
-    );
-  } catch (err) {
-    alert("Login lỗi: " + err.message);
-  }
+
+window.login = async () => {
+  await signInWithEmailAndPassword(
+    auth,
+    document.getElementById("email").value,
+    document.getElementById("password").value
+  );
 };
 
-/* LOGOUT */
-window.logout = function () {
-  signOut(auth);
-};
+window.logout = () => signOut(auth);
 
-/* CLICK LINK */
-window.handleClick = function (taskId) {
-  if (!currentUser) {
-    alert("Đăng nhập để khám phá nhiều h");
-    return;
-  }
-
-  localStorage.setItem("pending_task", taskId);
-  localStorage.setItem("task_time", Date.now());
-};
-</script>
-
-<script>
-
-const searchInput = document.getElementById("searchInput");
-
-searchInput.addEventListener("input", function () {
-  const keyword = this.value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    const title = card.querySelector(".card-title")?.innerText.toLowerCase() || "";
-
-    if (title.includes(keyword)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+/* SEARCH */
+document.getElementById("searchInput").addEventListener("input", e => {
+  const key = e.target.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display =
+      card.querySelector(".card-title").innerText.toLowerCase().includes(key)
+      ? "block" : "none";
   });
 });
-</script>
-<!-- contact -->
-<div class="contact-float">
-    <!-- <a href="tel:0934072575" class="contact-btn phone">
-        📞
-        <span>Gọi điện</span>
-    </a> -->
 
-    <a href="https://web.telegram.org/k/#@MinBroBii35" target="_blank" class="contact-btn zalo">
-        💬
-        <span>Telegram</span>
-    </a>
+/* POINT + VƯỢT LINK */
+if (!localStorage.getItem("point")) localStorage.setItem("point","0");
 
-    <a href="https://www.facebook.com/minbrobii0501/" target="_blank" class="contact-btn fb">
-        📘
-        <span>Facebook</span>
-    </a>
+document.querySelectorAll(".btn-vuot").forEach(btn=>{
+  btn.onclick=()=>{
+    let p=Number(localStorage.getItem("point"));
+    if(p>=3) return alert("Bạn đã đủ 3 point!");
 
-    <!-- <button class="contact-btn callback" onclick="openCallback()">
-        ☎
-        <span>Yêu cầu gọi lại</span>
-    </button> -->
-</div>
+    const step=p+1;
+    const token="t_"+Math.random().toString(36).slice(2);
+    localStorage.setItem("point",step);
+    localStorage.setItem("token_step_"+step,token);
 
-<script>
-if (!localStorage.getItem('point')) {
-    localStorage.setItem('point', '0');
-}
-
-document.querySelectorAll('.btn-vuot').forEach(btn => {
-    btn.addEventListener('click', () => {
-
-        let point = Number(localStorage.getItem('point'));
-        const step = point + 1;
-
-        if (step > 3) {
-            alert("Bạn đã đủ 3 point!");
-            return;
-        }
-
-        // sinh token 1 lần
-        const token = 't_' + Math.random().toString(36).slice(2);
-        localStorage.setItem('token_step_' + step, token);
-
-        // lấy link rút gọn của card đó
-        const baseLink = btn.dataset.shortlink;
-
-        // redirect về xacminh.html
-        const finalLink =
-            baseLink +
-            "?redirect=https://quyenls.github.io/rutgonlink/xacminh.html" +
-            "&step=" + step +
-            "&token=" + token;
-
-        window.location.href = finalLink;
-    });
+    window.location.href=
+      btn.dataset.shortlink+
+      "?redirect=https://quyenls.github.io/rutgonlink/xacminh.html"+
+      "&step="+step+
+      "&token="+token;
+  };
 });
 </script>
-
 
 </body>
 </html>
