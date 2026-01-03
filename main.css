@@ -213,4 +213,58 @@ h2 {
   color: #fff;
 }
 
+.site-footer {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding: 40px 20px 20px;
+  margin-top: 60px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-col h3, .footer-col h4 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: #38bdf8;
+}
+
+.social a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 6px 12px;
+  background: #1e293b;
+  border-radius: 6px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
 </style>
