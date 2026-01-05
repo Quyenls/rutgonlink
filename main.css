@@ -47,13 +47,20 @@ h2 {
 
 /* ====== LOGIN ====== */
 .login-wrap {
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-  border: 2px solid #ff6a00;
+  border-radius: 22px;
+  padding: 28px;
+
+  border: 1px solid rgba(255,255,255,0.6);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
 }
+
 
 .login-title {
   margin-bottom: 20px;
@@ -73,29 +80,52 @@ h2 {
 
 .login-btn {
   width: 100%;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 14px;
   border: none;
-  cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
+  cursor: pointer;
 
-  background: linear-gradient(135deg, #ff9800, #ff5722);
-  color: white;
+  background: linear-gradient(135deg, #ff8a00, #ff3d00);
+  color: #fff;
+
+  box-shadow: 0 12px 30px rgba(255,138,0,0.45);
+  transition: all .25s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 45px rgba(255,138,0,0.6);
+}
+
+.newyear-wrap h1 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  background: linear-gradient(90deg, #ffe082, #ffd54f, #ffecb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 4px 20px rgba(255,215,0,.35);
 }
 
 /* ====== BANNER TẾT ====== */
 .newyear-wrap {
   position: relative;
-  min-height: 260px;
-  border-radius: 24px;
-  padding: 40px;
+  border-radius: 28px;
+  padding: 48px;
 
-  background: linear-gradient(135deg, #b71c1c, #ff9800);
+  background:
+    radial-gradient(circle at top left, rgba(255,215,0,.25), transparent 40%),
+    linear-gradient(135deg, #7a0f12, #c62828);
+
   color: #fff;
-
-  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+  overflow: hidden;
 }
+
 
 .newyear-wrap h1 {
   font-size: 32px;
@@ -106,12 +136,8 @@ h2 {
   font-size: 18px;
 }
 
-.horse {
-  position: absolute;
-  right: 30px;
-  bottom: 0;
-  height: 220px;
-}
+
+
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
@@ -305,6 +331,27 @@ h2 {
   height: 220px;
   animation: float 4s ease-in-out infinite;
 }
+/* ===== FIREWORKS LIGHT ===== */
+.newyear-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,215,0,.8), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.6), transparent 40%),
+    radial-gradient(circle at 60% 65%, rgba(255,200,0,.7), transparent 45%),
+    radial-gradient(circle at 30% 70%, rgba(255,255,255,.5), transparent 40%);
+
+  animation: fireworksGlow 6s ease-in-out infinite;
+}
+
+@keyframes fireworksGlow {
+  0%,100% { opacity: .35; }
+  50% { opacity: .75; }
+}
+
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -409,6 +456,25 @@ h2 {
   margin-top: 30px;
   font-size: 14px;
   color: #94a3b8;
+}
+.newyear-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255,215,0,.9), transparent 30%),
+    radial-gradient(circle at 75% 35%, rgba(255,255,255,.7), transparent 35%),
+    radial-gradient(circle at 50% 65%, rgba(255,170,0,.8), transparent 40%);
+
+  animation: fireworksPop 4s infinite;
+}
+
+@keyframes fireworksPop {
+  0%   { opacity: 0; transform: scale(.6); }
+  40%  { opacity: .8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.4); }
 }
 
 </style>
