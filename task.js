@@ -1,3 +1,4 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import {
   getFirestore,
@@ -8,14 +9,26 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-let time = 8;
-const el = document.getElementById("time");
+const firebaseConfig = {
+  apiKey: "AIzaSyDEyS92letMGJACGU2u8ShxvR8EqDTzig",
+  authDomain: "share-link-9008c.firebaseapp.com",
+  projectId: "share-link-9008c",
+  storageBucket: "share-link-9008c.firebasestorage.app",
+  messagingSenderId: "151229659684",
+  appId: "1:151229659684:web:954b4f96ad735d337cb6b1",
+  measurementId: "G-NM0B8SNRQ1"
+};
+
+initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const db = getFirestore();
 
+let time = 8;
+const el = document.getElementById("time");
+
 function getToday() {
-  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  return new Date().toISOString().slice(0, 10);
 }
 
 const timer = setInterval(async () => {
@@ -27,14 +40,12 @@ const timer = setInterval(async () => {
 
     const user = auth.currentUser;
 
-    // ✅ CHỈ LOGIN MỚI XÉT POINT
     if (user) {
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
       const today = getToday();
 
       if (!snap.exists()) {
-        // user mới
         await setDoc(ref, {
           email: user.email,
           points: 1,
@@ -44,22 +55,18 @@ const timer = setInterval(async () => {
       } else {
         const data = snap.data();
 
-        // sang ngày mới
         if (data.lastDate !== today) {
           await updateDoc(ref, {
             points: increment(1),
             todayCount: 1,
             lastDate: today
           });
-        }
-        // cùng ngày nhưng chưa đủ limit
-        else if ((data.todayCount || 0) < 5) {
+        } else if ((data.todayCount || 0) < 5) {
           await updateDoc(ref, {
             points: increment(1),
             todayCount: increment(1)
           });
         }
-        // đủ 5 point/ngày → KHÔNG CỘNG
       }
     }
 
