@@ -12,12 +12,9 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyDEyS92letMGJACGU2u8ShxvR8EqDTzig",
   authDomain: "share-link-9008c.firebaseapp.com",
-  projectId: "share-link-9008c",
-  storageBucket: "share-link-9008c.firebasestorage.app",
-  messagingSenderId: "151229659684",
-  appId: "1:151229659684:web:954b4f96ad735d337cb6b1",
-  measurementId: "G-NM0B8SNRQ1"
+  projectId: "share-link-9008c"
 };
+
 
 initializeApp(firebaseConfig);
 

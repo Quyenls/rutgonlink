@@ -34,6 +34,97 @@ h2 {
 
 /* ===== SEARCH ===== */
 
+/* ====== LAYOUT ====== */
+.home-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+/* ====== LOGIN ====== */
+.login-wrap {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  border: 2px solid #ff6a00;
+}
+
+.login-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  border-left: 4px solid #00a86b;
+  padding-left: 10px;
+}
+
+.login-wrap input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+}
+
+/* ====== BANNER TẾT ====== */
+.newyear-wrap {
+  position: relative;
+  min-height: 260px;
+  border-radius: 24px;
+  padding: 40px;
+
+  background: linear-gradient(135deg, #b71c1c, #ff9800);
+  color: #fff;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.newyear-wrap h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.newyear-wrap p {
+  font-size: 18px;
+}
+
+.horse {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  height: 220px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .horse {
+    position: static;
+    display: block;
+    margin: 20px auto 0;
+  }
+}
 
 /* ===== SEARCH (PRO STYLE) ===== */
 .search-box {
@@ -167,6 +258,58 @@ h2 {
   border: none;
   margin-right: 5px;
 }
+.newyear-banner {
+  position: relative;
+  height: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top, #ffeb3b33, transparent 60%),
+    linear-gradient(135deg, #b71c1c, #ff9800);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.newyear-banner::before {
+  content: "✨✨✨";
+  position: absolute;
+  inset: 0;
+  background-image: url("fireworks.png");
+  background-size: cover;
+  opacity: 0.15;
+}
+
+.newyear-banner .content {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.newyear-banner h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.newyear-banner p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mascot {
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  height: 220px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
 /* ===== AUTH ===== */
 #loginBox,#userBox{
@@ -174,6 +317,61 @@ h2 {
   background:#fff;
   margin:15px;
   border-radius:6px;
+}
+.login-card {
+  width: 320px;
+  padding: 24px;
+  border-radius: 18px;
+
+  background: #ffffff;
+  position: relative;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.12),
+    inset 0 0 0 2px transparent;
+
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff9800, #ff3d00);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.login-card h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
 }
 
 /* ===== CONTACT ===== */
