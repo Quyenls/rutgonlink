@@ -278,8 +278,10 @@
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-col">
-      <h3>MakeMoneyOnline</h3>
-      <p>Chia sẻ tài nguyên miễn phí ,tut, mẹo đky gpt...<br>
+      <h3>Giới Thiệu</h3>
+      <p>income4students.online <br>
+        <br>
+        Chia sẻ tài nguyên miễn phí ,tut, mẹo đăgn ký gpt...<br>
         File MOD FF, khóa học tiktokshop,shopee,fb,Affiliate...<br>
         Cách kiếm tiền online....</p>
     </div>
@@ -360,26 +362,14 @@ document.getElementById("searchInput").addEventListener("input", e => {
   });
 });
 
-/* POINT + VƯỢT LINK */
-if (!localStorage.getItem("point")) localStorage.setItem("point","0");
-
-document.querySelectorAll(".btn-vuot").forEach(btn=>{
-  btn.onclick=()=>{
-    let p=Number(localStorage.getItem("point"));
-    if(p>=3) return alert("Bạn đã đủ 3 point!");
-
-    const step=p+1;
-    const token="t_"+Math.random().toString(36).slice(2);
-    localStorage.setItem("point",step);
-    localStorage.setItem("token_step_"+step,token);
-
-    window.location.href=
-      btn.dataset.shortlink+
-      "?redirect=https://quyenls.github.io/rutgonlink/xacminh.html"+
-      "&step="+step+
-      "&token="+token;
+/* VƯỢT LINK (KHÔNG XỬ LÝ POINT Ở ĐÂY) */
+document.querySelectorAll(".btn-vuot").forEach(btn => {
+  btn.onclick = () => {
+    localStorage.setItem("targetLink", btn.dataset.shortlink);
+    window.location.href = "trangdoi.html";
   };
 });
+
 </script>
 
 </body>
