@@ -1,73 +1,41 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  updateDoc,
-  increment,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
+// 🔥 Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyDEyS92letMGJACGU2u8ShxvR8EqDTzig",
+  apiKey: "AIzaSyDEyS2YLetTmGJACGU2u8SnxvR8EqDTzig",
   authDomain: "share-link-9008c.firebaseapp.com",
-  projectId: "share-link-9008c"
+  projectId: "share-link-9008c",
+  storageBucket: "share-link-9008c.appspot.com",
+  messagingSenderId: "151229659684",
+  appId: "1:151229659684:web:954b4f96ad735d337cb6b1"
 };
 
+// Init Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-initializeApp(firebaseConfig);
+// Login logic
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("loginMsg");
 
-const auth = getAuth();
-const db = getFirestore();
+  msg.textContent = "";
 
-let time = 8;
-const el = document.getElementById("time");
-
-function getToday() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-const timer = setInterval(async () => {
-  time--;
-  el.textContent = time;
-
-  if (time <= 0) {
-    clearInterval(timer);
-
-    const user = auth.currentUser;
-
-    if (user) {
-      const ref = doc(db, "users", user.uid);
-      const snap = await getDoc(ref);
-      const today = getToday();
-
-      if (!snap.exists()) {
-        await setDoc(ref, {
-          email: user.email,
-          points: 1,
-          todayCount: 1,
-          lastDate: today
-        });
-      } else {
-        const data = snap.data();
-
-        if (data.lastDate !== today) {
-          await updateDoc(ref, {
-            points: increment(1),
-            todayCount: 1,
-            lastDate: today
-          });
-        } else if ((data.todayCount || 0) < 5) {
-          await updateDoc(ref, {
-            points: increment(1),
-            todayCount: increment(1)
-          });
-        }
-      }
-    }
-
-    const link = localStorage.getItem("targetLink");
-    window.location.href = link || "index.html";
+  if (!email || !password) {
+    msg.textContent = "Vui lòng nhập đầy đủ email và mật khẩu";
+    return;
   }
-}, 1000);
+
+  try {
+    const userCred = await signInWithEmailAndPassword(auth, email, password);
+    console.log("Login OK:", userCred.user);
+    msg.style.color = "green";
+    msg.textContent = "Đăng nhập thành công!";
+    // window.location.href = "trangdoi.html"; // nếu muốn chuyển trang
+  } catch (err) {
+    console.error(err);
+    msg.textContent = err.message;
+  }
+});
