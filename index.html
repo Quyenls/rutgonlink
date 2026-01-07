@@ -302,32 +302,13 @@
 </footer>
 
 
-// FIREBASE + LOGIC
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
-  from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } 
-  from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-// 🔥 CONFIG CỦA BẠN
-const firebaseConfig = {
-  apiKey: "AIzaSyDEyS2YletTmGJACGU2u8SnxvR8EqDTzig",
-  authDomain: "share-link-9008c.firebaseapp.com",
-  projectId: "share-link-9008c",
-  storageBucket: "share-link-9008c.appspot.com",
-  messagingSenderId: "151229659684",
-  appId: "1:151229659684:web:954b4f96ad735d337cb6b1"
-};
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-// INIT
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// 👉 từ đây trở xuống là code login / firestore của bạn
-
-<script src="task.js" type="module"></script>
+<script src="firebase.js"></script>
+<script src="task.js"></script>
 
 </body>
 </html>

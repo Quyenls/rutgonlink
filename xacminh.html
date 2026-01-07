@@ -8,24 +8,52 @@
 <body>
     <h2 id="status">Đang xác minh...</h2>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<!-- Firebase config -->
+<script src="firebase.js"></script>
+
 <script>
-const params = new URLSearchParams(window.location.search);
-const step = params.get('step');
-const token = params.get('token');
+auth.onAuthStateChanged(async user => {
+  if (!user) return;
 
-const savedToken = localStorage.getItem('token_step_' + step);
-let point = Number(localStorage.getItem('point') || 0);
+  const taskId = localStorage.getItem("currentTask");
+  if (!taskId) {
+    document.body.innerHTML = "❌ Không tìm thấy task";
+    return;
+  }
 
-if (token && savedToken && token === savedToken && point + 1 == step) {
-    point++;
-    localStorage.setItem('point', point);
-    localStorage.removeItem('token_step_' + step);
-    document.getElementById('status').innerText =
-        `✔ Hoàn thành bước ${step} | Tổng point: ${point}`;
-} else {
-    document.getElementById('status').innerText =
-        "❌ Xác minh thất bại hoặc đã dùng!";
-}
+  const userRef = db.collection("users").doc(user.uid);
+  const userSnap = await userRef.get();
+  const userData = userSnap.data();
+
+  if (userData.completedTasks.includes(taskId)) {
+    document.body.innerHTML = "❌ Bạn đã làm task này rồi";
+    return;
+  }
+
+  const taskSnap = await db.collection("tasks").doc(taskId).get();
+  const reward = taskSnap.data().reward;
+
+  await userRef.update({
+    points: firebase.firestore.FieldValue.increment(reward),
+    completedTasks: firebase.firestore.FieldValue.arrayUnion(taskId),
+    lastTaskAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  await db.collection("logs").add({
+    uid: user.uid,
+    taskId,
+    action: "complete",
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  localStorage.removeItem("currentTask");
+  document.body.innerHTML = "✅ Hoàn thành! +1 điểm";
+});
 </script>
 
 

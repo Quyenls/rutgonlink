@@ -13,31 +13,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔴 FIX QUAN TRỌNG
-document.addEventListener("DOMContentLoaded", () => {
-
-  const loginBtn = document.getElementById("loginBtn");
-  if (!loginBtn) {
-    console.error("❌ loginBtn not found");
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    window.location.href = "index.html";
     return;
   }
 
-  loginBtn.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const msg = document.getElementById("loginMsg");
+  db.collection("tasks")
+    .where("active", "==", true)
+    .get()
+    .then(snapshot => {
+      const container = document.getElementById("taskList");
+      container.innerHTML = "";
 
-    msg.textContent = "";
+      snapshot.forEach(doc => {
+        const task = doc.data();
 
-    try {
-      const userCred = await signInWithEmailAndPassword(auth, email, password);
-      console.log("✅ Login OK:", userCred.user);
-      msg.style.color = "green";
-      msg.textContent = "Đăng nhập thành công!";
-    } catch (err) {
-      console.error("❌ Login error:", err.code, err.message);
-      msg.textContent = err.message;
-    }
-  });
+        const btn = document.createElement("button");
+        btn.innerText = task.title;
 
+        btn.onclick = () => {
+          localStorage.setItem("currentTask", doc.id);
+          window.location.href = task.shortLink;
+        };
+
+        container.appendChild(btn);
+      });
+    });
 });
