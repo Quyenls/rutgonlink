@@ -284,6 +284,17 @@ h2 {
   border: none;
   margin-right: 5px;
 }
+.btn2 {
+  background: #ea1334;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
+}
 .newyear-banner {
   position: relative;
   height: 260px;
