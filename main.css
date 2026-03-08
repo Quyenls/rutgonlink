@@ -267,6 +267,19 @@ body {
 
 /* ===== BUTTONS ===== */
 .btn-link {
+  background: #d66407e7;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+.btn-link2 {
   background: #ea1334;
   color: #fff;
   padding: 8px 12px;
