@@ -12,7 +12,64 @@
 </head>
 
 <body>
+<!-- Giao diện hiển thị -->
+<div style="text-align: center; margin: 20px; font-family: sans-serif;">
+  <h2>Nhận Tài Khoản CapCut Pro 7 Ngày Miễn Phí</h2>
+  <p>Vui lòng vượt link để hệ thống tự động xuất tài khoản.</p>
+  
+  <!-- Nút bấm -->
+  <button id="btn-get-acc" style="padding: 12px 24px; background-color: #2563EB; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">
+    Lấy Tài Khoản Ngay
+  </button>
 
+  <!-- Khu vực hiện kết quả (Mặc định ẩn) -->
+  <div id="result-box" style="display: none; margin-top: 20px; padding: 15px; border: 2px dashed #10B981; border-radius: 8px; background-color: #ECFDF5;">
+    <h3 style="color: #047857; margin-top: 0;">🎉 Vượt link thành công!</h3>
+    <p>Tài khoản CapCut Pro của bạn đây (Dùng ngay kẻo người khác lấy):</p>
+    <div style="font-size: 18px;">
+      <p><strong>Email:</strong> <span id="acc-email" style="color: #D97706;"></span></p>
+      <p><strong>Mật khẩu:</strong> <span id="acc-pass" style="color: #D97706;"></span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Script xử lý logic "làm màu" -->
+<script>
+  // 1. Thay cái link rút gọn Link4M của m vào đây
+  const link4m_url = "https://link4m.com/L61CnY"; 
+
+  // 2. Data acc fake (Làm màu thì cứ random vài cái cho có vẻ thật)
+  const fakeAccs = [
+    { email: "capcut_pro_mmo1@gmail.com", pass: "Capcut@2026vip" },
+    { email: "share_capcut_99@yahoo.com", pass: "Pro7days!#$" },
+    { email: "campusworks_acc@outlook.com", pass: "VipMember123" }
+  ];
+
+  document.getElementById('btn-get-acc').addEventListener('click', function() {
+    // Chuyển hướng sang Link4M
+    window.location.href = link4m_url;
+  });
+
+  // 3. Kiểm tra xem có phải khách vừa từ Link4M quay về không
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('nhan_acc') === 'thanhcong') {
+    // Ẩn nút bấm đi
+    document.getElementById('btn-get-acc').style.display = 'none';
+    
+    // Random lấy 1 acc trong list
+    const randomAcc = fakeAccs[Math.floor(Math.random() * fakeAccs.length)];
+    
+    // Gắn vào HTML
+    document.getElementById('acc-email').innerText = randomAcc.email;
+    document.getElementById('acc-pass').innerText = randomAcc.pass;
+    
+    // Hiện khung kết quả lên
+    document.getElementById('result-box').style.display = 'block';
+
+    // Xoá cái tham số trên URL cho sạch đẹp (tùy chọn)
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+</script>
     <header class="site-header">
         <nav class="main-nav">
             <ul class="nav-list" style="display: flex; gap: 20px; list-style: none; justify-content: center; padding: 20px 0;">
